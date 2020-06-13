@@ -315,26 +315,8 @@ public class GuestsList {
 
     }
 
-    public ArrayList<Guest> guests(ArrayList<Guest> list) {
-
-        this.guestList = list;
-        return list;
-    }
-
-    public ArrayList<Guest> waitlist(ArrayList<Guest> list, int nrP) {
-
-        if (list.size() > nrP) {
-            for (int i = 0; i < nrP; i++) {
-                list.remove(list.get(i));
-
-            }
-            this.waitlist = list;
-            return this.waitlist;
-        }
-        return null;
 
 
-    }
 
     public int available(ArrayList list) {
 

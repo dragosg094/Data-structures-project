@@ -1,6 +1,7 @@
 package P1;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -47,28 +48,76 @@ public class Main {
                 "\n -numar de telefon (4)");
 
         Scanner sc = new Scanner(System.in);
+        int choice;
+        while(true){
+            try {
+                choice = sc.nextInt();
+                break;
+            }catch (InputMismatchException e){
+                System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+            }
+        }
 
-        int choice = sc.nextInt();
         switch (choice) {
             case 1:
                 System.out.println("Introduceti un nume de familie:");
-                String lName = sc.next();
+                String lName;
+                while(true){
+                    try{
+                        lName = sc.next();
+
+                        break;
+                    }catch (InputMismatchException e){
+                        System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                    }
+                }
 
                 array.remove(array, choice, lName);
                 break;
             case 2:
                 System.out.println("Introduceti un prenume:");
-                String fName = sc.next();
+                String fName ;
+                while(true){
+                    try{
+                        fName = sc.next();
+
+                        break;
+                    }catch (InputMismatchException e){
+                        System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                    }
+                }
+
+
                 array.remove(array, choice, fName);
                 break;
             case 3:
                 System.out.println("Introduceti un email:");
-                String email = sc.next();
+
+                String email ;
+                while(true){
+                    try{
+                        email = sc.next();
+
+                        break;
+                    }catch (InputMismatchException e){
+                        System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                    }
+                }
                 array.remove(array, choice, email);
                 break;
             case 4:
                 System.out.println("Introduceti un numar de telefon:");
-                String nr = sc.next();
+                String nr ;
+                while(true){
+                    try{
+                        nr = sc.next();
+
+                        break;
+                    }catch (InputMismatchException e){
+                        System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                    }
+                }
+               
                 array.remove(array, choice, nr);
                 break;
         }
@@ -80,24 +129,52 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         if (guest.getGuestList().contains(guest.updateSearch(guest.getGuestList(), opt, searchBy1, searchBy2))) {
+
             switch (opt) {
                 case 1:
                     System.out.println("Introduceti un nume si prenume");
+                    String updatedFn ;
+                    String updatedLn ;
+                    while(true){
+                        try{
+                            updatedFn = sc.next();
+                            updatedLn = sc.next();
+                            break;
+                        }catch (InputMismatchException e){
+                            System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                        }
+                    }
 
-                    String updatedFn = sc.next();
-                    String updatedLn = sc.next();
                     guest.updatedValue(guest.updateSearch(guest.getGuestList(), opt, searchBy1, searchBy2), 1, updatedFn, updatedLn);
                     break;
                 case 2:
                     System.out.println("Introduceti un email");
 
-                    String updatedEmail = sc.next();
+                    String updatedEmail ;
+                    while(true){
+                        try{
+                            updatedEmail = sc.next();
+
+                            break;
+                        }catch (InputMismatchException e){
+                            System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                        }
+                    }
                     guest.updatedValue(guest.updateSearch(guest.getGuestList(), opt, searchBy1, searchBy2), 1, updatedEmail);
                     break;
                 case 3:
                     System.out.println("Introduceti un numar de telefon (format „+40733386463“):");
 
-                    String updatedPhN = sc.next();
+                    String updatedPhN;
+                    while(true){
+                        try{
+                            updatedPhN = sc.next();
+
+                            break;
+                        }catch (InputMismatchException e){
+                            System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+                        }
+                    }
                     guest.updatedValue(guest.updateSearch(guest.getGuestList(), opt, searchBy1, searchBy2), 1, updatedPhN);
                     break;
                 default:
@@ -140,16 +217,33 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Bun venit! Introduceti numarul de locuri disponibile:");
         Scanner sc = new Scanner(System.in);
-
-        int n = sc.nextInt();
+        int n;
+        while(true) {
+            try {
+                n = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Nu ai introdus o valoare intreaga. Te rog sa reincerci.");
+            }
+        }
         ArrayList<Guest> list = new ArrayList<Guest>();
         ArrayList<Guest> waitlist = new ArrayList<Guest>();
         GuestsList pers = new GuestsList(list, n, waitlist);
         pers.setNumberOfParticipants(n);
-        String msj = "";
+        String msj;
 
         System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
-        msj = sc.next();
+
+        while(true){
+            try {
+                msj = sc.next();
+                break;
+            }catch (InputMismatchException e){
+                System.out.println("Nu ai introdus valoarea corecta. Te rog sa reincerci.");
+            }
+        }
+
 
         while (!msj.equals("quit")) {
             switch (msj) {
@@ -157,15 +251,23 @@ public class Main {
                     help();
                     break;
                 case "add":
-                    System.out.println("Se adauga o noua persoana...");
-                    System.out.println("Introduceti numele de familie:");
-                    String ln = sc.next();
-                    System.out.println("Introduceti prenumele:");
-                    String fn = sc.next();
-                    System.out.println("Introduceti email:");
-                    String email = sc.next();
-                    System.out.println("Introduceti numar de telefon (format „+40733386463“):");
-                    String nr = sc.next();
+                    String ln, fn, email, nr;
+                    while(true) {
+                        try {
+                            System.out.println("Se adauga o noua persoana...");
+                            System.out.println("Introduceti numele de familie:");
+                            ln = sc.next();
+                            System.out.println("Introduceti prenumele:");
+                            fn = sc.next();
+                            System.out.println("Introduceti email:");
+                            email = sc.next();
+                            System.out.println("Introduceti numar de telefon (format „+40733386463“):");
+                            nr = sc.next();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Nu ai introdus o valoare corecta. Te rog sa reincerci.");
+                        }
+                    }
                     Guest newGuest = new Guest(ln, fn, email, nr);
                     int result = pers.add(pers.getGuestList(), newGuest, n);
                     if (result == -1 || result == 0) {
@@ -181,8 +283,16 @@ public class Main {
                             "\"2\" - Prenume\n" +
                             "\"3\" - Email\n" +
                             "\"4\" - Numar de telefon (format \"+40733386463\")");
-
-                    int choice = sc.nextInt();
+                    int choice = 0;
+                    while (true) {
+                        try {
+                            choice = sc.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            sc.nextLine();
+                            System.out.println("Nu ai introdus o valoare intreaga. Te rog sa reincerci.");
+                        }
+                    }
                     switch (choice) {
                         case 1:
                             System.out.println("Introduceti un nume de familie:");
@@ -217,8 +327,16 @@ public class Main {
                             "\"1\" - Nume si prenume\n" +
                             "\"2\" - Email\n" +
                             "\"3\" - Numar de telefon (format \"+40733386463\")");
-                    int opt = sc.nextInt();
-
+                    int opt=0;
+                    while (true) {
+                        try {
+                            opt = sc.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            sc.nextLine();
+                            System.out.println("Nu ai introdus o valoare corecta. Te rog sa reincerci.");
+                        }
+                    }
                     switch (opt) {
                         case 1:
                             System.out.println("Introduceti un nume de familie si un prenume:");
@@ -272,7 +390,15 @@ public class Main {
                     break;
                 case "search":
                     System.out.println("Introdu un sir de caractere...");
-                    String str = sc.next();
+                    String str;
+                    while(true) {
+                        try {
+                            str = sc.next();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Nu ai introdus o valoare corecta.Te rog sa reincerci.");
+                        }
+                    }
                     GuestsList.search(pers.getGuestList(), str);
                     System.out.println(GuestsList.search(pers.getGuestList(), str));
                     break;
